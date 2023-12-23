@@ -39,10 +39,10 @@
 
 <div class="page home-page">
     <div class="page-body">
-        @await Component.InvokeAsync("Widget", new { widgetZone = "emporium_home_page_info_boxes" })
-        @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HomepageTop })
-        @await Component.InvokeAsync(typeof(TopicBlockViewComponent), new { systemName = "HomepageText" })
-        @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HomepageBeforeCategories })
+@*         @await Component.InvokeAsync("Widget", new { widgetZone = "emporium_home_page_info_boxes" })
+ *@        @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HomepageTop })
+@*         @await Component.InvokeAsync(typeof(TopicBlockViewComponent), new { systemName = "HomepageText" })
+ *@        @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HomepageBeforeCategories })
         @await Component.InvokeAsync(typeof(HomepageCategoriesViewComponent))
         @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HomepageBeforeNews })
         @await Component.InvokeAsync(typeof(HomepageNewsViewComponent))
@@ -58,5 +58,48 @@
             @await Component.InvokeAsync(typeof(HomepageProductsViewComponent))
             @await Component.InvokeAsync(typeof(HomepageBestSellersViewComponent))
         </div>
+@* <div class="home-page-advantages">
+    <div class="advantages-item">
+        <div class="picture"></div>
+        <div class="info"><div class="title">        @await Component.InvokeAsync(typeof(TopicBlockViewComponent), new { systemName = "HomepageText" })
+        </div></div>
     </div>
+    <div class="advantages-item" >
+        <div class="picture"></div>
+        <div class="info"><div class="title">        @await Component.InvokeAsync("Widget", new { widgetZone = "emporium_home_page_info_boxes" })
+        </div></div>
+    </div>
+    <div class="advantages-item">
+        <div class="picture"></div>
+        <div class="info"><div class="title">        @await Component.InvokeAsync(typeof(TopicBlockViewComponent), new { systemName = "AboutUs" })
+        </div></div>
+    </div>
+</div> *@
+        <div class="rich-blog-homepage">
+            <div class="blog-posts">
+                <div class="blog-post"  >
+                    <div class="post-details">
+                        <div class="post-date">
+                            @await Component.InvokeAsync(typeof(TopicBlockViewComponent), new { systemName = "HomepageText" })
+                        </div>
+                    </div>
+                </div>
+                <div class="blog-post">
+                    <div class="post-details">
+                        <div class="post-date">
+                            @await Component.InvokeAsync("Widget", new { widgetZone = "emporium_home_page_info_boxes" })
+                        </div>
+                    </div>
+                </div>
+                <div class="blog-post" >
+                    <div class="post-details">
+                        <div class="post-date">
+                            @await Component.InvokeAsync(typeof(TopicBlockViewComponent), new { systemName = "AboutUs" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
