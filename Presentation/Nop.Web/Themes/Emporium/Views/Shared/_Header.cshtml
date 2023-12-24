@@ -44,10 +44,11 @@
 	            <ul class="category-navigation-list @if (stickyCategoryMenuFlyout){<text>sticky-flyout</text>}"></ul>
 		        </div>
             }*@
-		    <div class="close-menu">
-		    	<span class="close-menu-text">@T("SevenSpikes.Themes.Common.MenuTitle")</span>
-		        <span class="close-menu-btn">@T("SevenSpikes.Themes.Common.CloseMenu")</span>
-		    </div>
+
+            <div class="close-menu">
+                <span class="close-menu-text">@T("SevenSpikes.Themes.Common.MenuTitle")</span>
+                <span class="close-menu-btn">@T("SevenSpikes.Themes.Common.CloseMenu")</span>
+            </div>
             @{
                 var menuHtml = await Component.InvokeAsync("Widget", new { widgetZone = "theme_header_menu" });
             }
@@ -58,6 +59,29 @@
             else
             {
                 @await Component.InvokeAsync(typeof(TopMenuViewComponent))
+            }
+            <div class="mobile-menu-items"></div>
+        </div>
+    </div>
+    <div class="header-menu-parent">
+        <div class="header-menu @if (showCategoriesInSideMenu){<text>categories-in-side-panel</text>}">
+            @* @if (showCategoriesInSideMenu)
+		    {
+		        <div class="category-navigation-list-wrapper">
+                <span class="category-navigation-title">@T("SevenSpikes.Themes.Emporium.Header.AllCategories")</span> 	
+	            <ul class="category-navigation-list @if (stickyCategoryMenuFlyout){<text>sticky-flyout</text>}"></ul>
+		        </div>
+            }*@
+		    <div class="close-menu">
+		    	<span class="close-menu-text">@T("SevenSpikes.Themes.Common.MenuTitle")</span>
+		        <span class="close-menu-btn">@T("SevenSpikes.Themes.Common.CloseMenu")</span>
+		    </div>
+            @{
+                var menu2Html = await Component.InvokeAsync("Widget", new { widgetZone = "theme_header_menu2" });
+            }
+            @if (!String.IsNullOrEmpty(await menu2Html.RenderHtmlContentAsync()))
+            {
+                @menu2Html
             }
 		    <div class="mobile-menu-items"></div>
         </div>

@@ -1,4 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <SupportedWidgetZones>  
   <WidgetZone>theme_header_menu</WidgetZone>
+  <WidgetZone>theme_header_menu2</WidgetZone>
 </SupportedWidgetZones>
+

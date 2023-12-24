@@ -80,7 +80,7 @@
         }
         @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeaderLinksAfter, additionalData = Model })
     </ul>
-    @if (Model.ShoppingCartEnabled)
+   @*  @if (Model.ShoppingCartEnabled)
     {
         <div class="mobile-flyout-wrapper">
             <div class="close-side-menu">
@@ -89,7 +89,7 @@
             </div>
             @await Component.InvokeAsync("FlyoutShoppingCart")
         </div>
-    }
+    } *@
     @if (Model.AllowPrivateMessages && !string.IsNullOrEmpty(Model.AlertMessage))
     {
         //new private message notification
