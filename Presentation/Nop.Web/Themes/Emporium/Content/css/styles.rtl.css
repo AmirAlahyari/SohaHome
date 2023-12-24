@@ -1,3 +1,34 @@
+@font-face {
+  font-family: Vazir;
+  src: url('Font/Vazir.eot');
+  src: url('Font/Vazir.eot?#iefix') format('embedded-opentype'), url('Font/Vazir.woff') format('woff'), url('Font/Vazir.ttf') format('truetype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: Vazir;
+  src: url('Font/Vazir-Bold.eot');
+  src: url('Font/Vazir-Bold.eot?#iefix') format('embedded-opentype'), url('Font/Vazir-Bold.woff') format('woff'), url('Font/Vazir-Bold.ttf') format('truetype');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: Vazir;
+  src: url('Font/Vazir-Light.eot');
+  src: url('Font/Vazir-Light.eot?#iefix') format('embedded-opentype'), url('Font/Vazir-Light.woff') format('woff'), url('Font/Vazir-Light.ttf') format('truetype');
+  font-weight: 300;
+}
+
+* {
+  font-family: Vazir !important;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
 
 @-webkit-keyframes shake {
 	10%, 90% {
@@ -6112,6 +6143,7 @@ select.estimate-shipping-address-control {
 	font-size: 15px;
 	line-height: 1.5;
 	color: #8c8c8c;
+
 }
 
 

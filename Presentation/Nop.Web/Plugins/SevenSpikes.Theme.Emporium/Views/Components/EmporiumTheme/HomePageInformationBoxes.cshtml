@@ -2,7 +2,7 @@
 
 @if (Model.Count > 0)
 {
-    <div class="home-page-advantages">
+    <div class="home-page-advantages" style="background-color: transparent; padding-top:70px; ">
         @foreach (var infoBox in Model)
         {
             <div class="">
@@ -18,7 +18,7 @@
                     }
                 </div>
                 <div class="info">
-                    <div class="title">
+                    <div class="title" style="font-size: 12px;">
                         @if (!String.IsNullOrEmpty(infoBox.Url))
                         {
                             <a href="@infoBox.Url" rel="@infoBox.Title">@infoBox.Title</a>

@@ -1,0 +1,13 @@
+
+@media all and (min-width: 769px) {
+
+    .rich-blog-homepage .blog-post {
+        float: right;
+        margin-right: 2%;
+        margin-left: 0;
+    }
+
+    .rich-blog-homepage .blog-post:nth-child(3n+1) {
+        margin-right: 0;
+    }
+}

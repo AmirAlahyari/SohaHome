@@ -65,6 +65,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0" />
     <!link rel="preload" as="font" href="@Url.Content($"~/Themes/{await themeContext.GetWorkingThemeNameAsync()}/Content/icons/emporium-icons.woff")" crossorigin />
     <!link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&amp;subset=cyrillic-ext,greek-ext&display=swap" rel="stylesheet" />
+    <link href="~/css/content/richblog.css" rel="stylesheet" />
+    <link href="~/css/content/richblog.rtl.css" rel="stylesheet" />
     @NopHtml.GenerateHeadCustom()
     @*This is used so that themes can inject content into the header*@
     @await Html.PartialAsync("Head")
