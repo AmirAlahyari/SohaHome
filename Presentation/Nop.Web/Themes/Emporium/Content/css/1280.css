@@ -21,6 +21,7 @@
 
 .header-menu {
 	padding: 0 6vw;
+  display: flex;
 }
 
 .header-logo {
