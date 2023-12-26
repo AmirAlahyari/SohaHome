@@ -15,7 +15,8 @@
   <WidgetZone>home_page_before_products</WidgetZone>
   <WidgetZone>home_page_top</WidgetZone>
   <WidgetZone>home_page_bottom</WidgetZone>
-  <WidgetZone>categorydetails_top</WidgetZone>
+  <WidgetZone>topic_details_bottom</WidgetZone>
+    <WidgetZone>categorydetails_top</WidgetZone>
   <WidgetZone>categorydetails_after_breadcrumb</WidgetZone>
   <WidgetZone>categorydetails_before_subcategories</WidgetZone>
   <WidgetZone>categorydetails_before_featured_products</WidgetZone>

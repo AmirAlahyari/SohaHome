@@ -99,5 +99,8 @@
     <div class="page-body">
         @Html.Raw(Model.Body)
     </div>
-    @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.TopicDetailsBottom, additionalData = Model })
+    @if (Model.SeName == "خرید-سازمانی")
+    {
+
+    @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.TopicDetailsBottom, additionalData = Model })}
 </div>
