@@ -1,9 +1,7 @@
-﻿@model FooterModel
-
-@using Nop.Core
+﻿@using Nop.Core
 @using Nop.Core.Domain.Tax
 @using Nop.Core.Domain.Topics
-@using Nop.Services.Configuration
+@model FooterModel
 
 @inject IStoreContext storeContext
 @inject IWorkContext workContext
@@ -17,16 +15,19 @@
 }
 
 <div class="footer">
-     @await Component.InvokeAsync("Widget", new { widgetZone = "footer_top" })
-    @* <div class="footer-upper">
-        @if (!String.IsNullOrEmpty(await footerLogoUrl.RenderHtmlContentAsync()))
+    @await Component.InvokeAsync("Widget", new { widgetZone = "footer_top" })
+    <div class="footer-upper">
+        @if (!string.IsNullOrEmpty(await footerLogoUrl.RenderHtmlContentAsync()))
         {
             <div class="footer-logo">
-                <img src="@footerLogoUrl" alt="footer_logo" />
+                <img src="@footerLogoUrl" alt="footer_logo"/>
             </div>
         }
-         @await Component.InvokeAsync(typeof(NewsletterBoxViewComponent))
-        </div>*@
+        @*@await Component.InvokeAsync(typeof(NewsletterBoxViewComponent))
+         *@
+        @await Component.InvokeAsync(typeof(TopicBlockViewComponent), new { systemName = "SupportTeamInfo" })
+
+    </div>
     <div class="footer-middle">
         <div class="footer-block">
             <div class="title">
@@ -35,34 +36,48 @@
             <ul class="list">
                 @if (Model.SitemapEnabled && Model.DisplaySitemapFooterItem)
                 {
-                    <li><a href="@Url.RouteUrl("Sitemap")">@T("Sitemap")</a></li>
+                    <li>
+                        <a href="@Url.RouteUrl("Sitemap")">@T("Sitemap")</a>
+                    </li>
                 }
                 @if (Model.DisplayContactUsFooterItem)
                 {
-                    <li><a href="@Url.RouteUrl("ContactUs")">@T("ContactUs")</a></li>
+                    <li>
+                        <a href="@Url.RouteUrl("ContactUs")">@T("ContactUs")</a>
+                    </li>
                 }
                 @if (Model.SearchEnabled && Model.DisplayProductSearchFooterItem)
                 {
-                    <li><a href="@Url.RouteUrl("ProductSearch")">@T("Search")</a> </li>
+                    <li>
+                        <a href="@Url.RouteUrl("ProductSearch")">@T("Search")</a>
+                    </li>
                 }
                 @if (Model.NewsEnabled && Model.DisplayNewsFooterItem)
                 {
-                    <li><a href="@Url.RouteUrl("NewsArchive")">@T("News")</a></li>
+                    <li>
+                        <a href="@Url.RouteUrl("NewsArchive")">@T("News")</a>
+                    </li>
                 }
                 @if (Model.ForumEnabled && Model.DisplayForumsFooterItem)
                 {
-                    <li><a href="@Url.RouteUrl("Boards")">@T("Forum.Forums")</a></li>
+                    <li>
+                        <a href="@Url.RouteUrl("Boards")">@T("Forum.Forums")</a>
+                    </li>
                 }
                 @if (Model.NewProductsEnabled && Model.DisplayNewProductsFooterItem)
                 {
-                    <li><a href="@Url.RouteUrl("NewProducts")">@T("Products.NewProducts")</a></li>
+                    <li>
+                        <a href="@Url.RouteUrl("NewProducts")">@T("Products.NewProducts")</a>
+                    </li>
                 }
                 @foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn1).ToList())
                 {
-                    <li><a href="@(Url.RouteUrl<Topic>(new { SeName = topic.SeName }))">@topic.Name</a></li>
+                    <li>
+                        <a href="@(Url.RouteUrl<Topic>(new { topic.SeName }))">@topic.Name</a>
+                    </li>
                 }
             </ul>
-        </div>        
+        </div>
         <div class="footer-block">
             <div class="title">
                 <strong>@T("Footer.CustomerService")</strong>
@@ -70,12 +85,18 @@
             <ul class="list">
                 @if (Model.AllowCustomersToApplyForVendorAccount && Model.DisplayApplyVendorAccountFooterItem)
                 {
-                    <li><a href="@Url.RouteUrl("ApplyVendorAccount")">درخواست نمایندگی</a></li>
-                    <li><a href="@Url.RouteUrl("ApplyVendorAccount")">همکاری با ما</a></li>
+                    <li>
+                        <a href="@Url.RouteUrl("ApplyVendorAccount")">درخواست نمایندگی</a>
+                    </li>
+                    <li>
+                        <a href="@Url.RouteUrl("ApplyVendorAccount")">همکاری با ما</a>
+                    </li>
                 }
                 @foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn2).ToList())
                 {
-                    <li><a href="@(Url.RouteUrl<Topic>(new { SeName = topic.SeName }))">@topic.Name</a></li>
+                    <li>
+                        <a href="@(Url.RouteUrl<Topic>(new { topic.SeName }))">@topic.Name</a>
+                    </li>
                 }
             </ul>
         </div>
@@ -115,14 +136,18 @@
                 }*@
                 @if (Model.BlogEnabled && Model.DisplayBlogFooterItem)
                 {
-                    <li><a href="@Url.RouteUrl("Blog")">مجله برنجبار</a></li>
+                    <li>
+                        <a href="@Url.RouteUrl("Blog")">مجله برنجبار</a>
+                    </li>
                 }
                 @foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn3).ToList())
                 {
-                    <li><a href="@(Url.RouteUrl<Topic>(new { SeName = topic.SeName }))">@topic.Name</a></li>
+                    <li>
+                        <a href="@(Url.RouteUrl<Topic>(new { topic.SeName }))">@topic.Name</a>
+                    </li>
                 }
             </ul>
-        </div> 
+        </div>
 
         <div class="socials-and-payments">
             <div class="social-icons">
@@ -131,11 +156,11 @@
                 </div>
                 @await Component.InvokeAsync(typeof(SocialButtonsViewComponent))
             </div>
-            <div class="pay-options">
-                <div class="title">
-@*                     <strong>@T("SevenSpikes.Themes.Emporium.Common.PaymentOptions")</strong>
- *@                </div>
-                    <img src="@Url.Content("~/Themes/Emporium/Content/img/enamad.png")" alt="" />
+            <div style="text-align:right">
+                @* <div class="title">
+                    <strong>@T("SevenSpikes.Themes.Emporium.Common.PaymentOptions")</strong>
+                </div> *@
+                @await Component.InvokeAsync(typeof(TopicBlockViewComponent), new { systemName = "Enamad" })
             </div>
         </div>
     </div>
@@ -165,7 +190,7 @@
             </div>
         }
         @await Component.InvokeAsync(typeof(StoreThemeSelectorViewComponent))
-        </div>
     </div>
-    @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.Footer, additionalData = Model })
+</div>
+@await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.Footer, additionalData = Model })
 </div>
