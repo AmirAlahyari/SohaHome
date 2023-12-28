@@ -68,6 +68,7 @@ namespace Nop.Web.Factories
         private readonly IWorkContext _workContext;
         private readonly MediaSettings _mediaSettings;
         private readonly VendorSettings _vendorSettings;
+        private readonly IAddressService _addressService;
 
         #endregion
 
@@ -101,7 +102,8 @@ namespace Nop.Web.Factories
             IWebHelper webHelper,
             IWorkContext workContext,
             MediaSettings mediaSettings,
-            VendorSettings vendorSettings)
+            VendorSettings vendorSettings, 
+            IAddressService addressService)
         {
             _blogSettings = blogSettings;
             _catalogSettings = catalogSettings;
@@ -132,6 +134,7 @@ namespace Nop.Web.Factories
             _workContext = workContext;
             _mediaSettings = mediaSettings;
             _vendorSettings = vendorSettings;
+            _addressService = addressService;
         }
 
         #endregion
@@ -1300,6 +1303,7 @@ namespace Nop.Web.Factories
             var vendors = await _vendorService.GetAllVendorsAsync();
             foreach (var vendor in vendors)
             {
+                var address = await _addressService.GetAddressByIdAsync(vendor.AddressId);
                 var vendorModel = new VendorModel
                 {
                     Id = vendor.Id,
@@ -1309,7 +1313,10 @@ namespace Nop.Web.Factories
                     MetaDescription = await _localizationService.GetLocalizedAsync(vendor, x => x.MetaDescription),
                     MetaTitle = await _localizationService.GetLocalizedAsync(vendor, x => x.MetaTitle),
                     SeName = await _urlRecordService.GetSeNameAsync(vendor),
-                    AllowCustomersToContactVendors = _vendorSettings.AllowCustomersToContactVendors
+                    AllowCustomersToContactVendors = _vendorSettings.AllowCustomersToContactVendors,
+                    PhoneNumber = address.PhoneNumber,
+                    Address = address.Address1,
+                    City = address.City
                 };
 
                 //prepare picture model

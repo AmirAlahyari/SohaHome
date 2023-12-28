@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Nop.Web.Framework.Models;
+﻿using Nop.Web.Framework.Models;
 using Nop.Web.Models.Media;
 
 namespace Nop.Web.Models.Catalog
@@ -18,6 +17,9 @@ namespace Nop.Web.Models.Catalog
         public string MetaDescription { get; set; }
         public string MetaTitle { get; set; }
         public string SeName { get; set; }
+        public string City { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Address { get; set; }
         public bool AllowCustomersToContactVendors { get; set; }
 
         public PictureModel PictureModel { get; set; }

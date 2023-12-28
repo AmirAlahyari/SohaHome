@@ -14,7 +14,7 @@
 }
 <div class="page vendor-list-page">
     <div class="page-title">
-        <h1>@T("Vendors.List")</h1>
+        <h1>نمایندگی  های فروش</h1>
     </div>
     <div class="page-body">
         <div class="vendor-grid">
@@ -24,7 +24,7 @@
                     <div class="item-box">
                         <div class="vendor-item">
                             <div class="picture">
-                                <a href="@(Url.RouteUrl<Vendor>(new { SeName = item.SeName }))" title="@item.PictureModel.Title">
+                               @*  <a href="@(Url.RouteUrl<Vendor>(new { SeName = item.SeName }))" title="@item.PictureModel.Title"> *@
                                     @if (viewComponentSelector.SelectComponent("LazyLoadImage") != null)
                                     {
                                         @await Component.InvokeAsync("LazyLoadImage", new(string Key, string Value)[] 
@@ -38,13 +38,24 @@
                                     {
                                         <img alt="@item.PictureModel.AlternateText" src="@item.PictureModel.ImageUrl" title="@item.PictureModel.Title" />
                                     }
-                                </a>
+                               @*  </a> *@
                             </div>
-                            <h2 class="title">
-                                <a href="@(Url.RouteUrl<Vendor>(new { SeName = item.SeName }))" title="@item.PictureModel.Title">
-                                    @item.Name
-                                </a>
-                            </h2>
+                            <h1 class="title">
+                                @* <a href="@(Url.RouteUrl<Vendor>(new { SeName = item.SeName }))" title="@item.PictureModel.Title"> *@
+                                @item.Name
+                                @* </a> *@
+                            </h1>
+                            <span>  </span>
+                            <h3 class="title"><span>آدرس : @item.Address</span></h3>
+                            <span style="text-align: right">
+                                <img src="@Url.Content("~/Themes/Emporium/Content/img/location_icon.png")" alt="" width="20px" height="20px" />
+                                @item.City
+                            </span>
+
+                            <span style="text-align: left">
+
+                                <button type="button" class="button-1 add-to-cart-button" onclick=" location.href='tel:{@item.PhoneNumber}';">تماس</button>
+                            </span>
                         </div>
                     </div>
                 }
