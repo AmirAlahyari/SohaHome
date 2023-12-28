@@ -17,16 +17,16 @@
 }
 
 <div class="footer">
-    @await Component.InvokeAsync("Widget", new { widgetZone = "footer_top" })
-    <div class="footer-upper">
+     @await Component.InvokeAsync("Widget", new { widgetZone = "footer_top" })
+    @* <div class="footer-upper">
         @if (!String.IsNullOrEmpty(await footerLogoUrl.RenderHtmlContentAsync()))
         {
             <div class="footer-logo">
                 <img src="@footerLogoUrl" alt="footer_logo" />
             </div>
         }
-        @await Component.InvokeAsync(typeof(NewsletterBoxViewComponent))
-    </div>
+         @await Component.InvokeAsync(typeof(NewsletterBoxViewComponent))
+        </div>*@
     <div class="footer-middle">
         <div class="footer-block">
             <div class="title">
@@ -49,10 +49,6 @@
                 {
                     <li><a href="@Url.RouteUrl("NewsArchive")">@T("News")</a></li>
                 }
-                @if (Model.BlogEnabled && Model.DisplayBlogFooterItem)
-                {
-                    <li><a href="@Url.RouteUrl("Blog")">@T("Blog")</a></li>
-                }
                 @if (Model.ForumEnabled && Model.DisplayForumsFooterItem)
                 {
                     <li><a href="@Url.RouteUrl("Boards")">@T("Forum.Forums")</a></li>
@@ -66,17 +62,33 @@
                     <li><a href="@(Url.RouteUrl<Topic>(new { SeName = topic.SeName }))">@topic.Name</a></li>
                 }
             </ul>
+        </div>        
+        <div class="footer-block">
+            <div class="title">
+                <strong>@T("Footer.CustomerService")</strong>
+            </div>
+            <ul class="list">
+                @if (Model.AllowCustomersToApplyForVendorAccount && Model.DisplayApplyVendorAccountFooterItem)
+                {
+                    <li><a href="@Url.RouteUrl("ApplyVendorAccount")">درخواست نمایندگی</a></li>
+                    <li><a href="@Url.RouteUrl("ApplyVendorAccount")">همکاری با ما</a></li>
+                }
+                @foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn2).ToList())
+                {
+                    <li><a href="@(Url.RouteUrl<Topic>(new { SeName = topic.SeName }))">@topic.Name</a></li>
+                }
+            </ul>
         </div>
         <div class="footer-block">
             <div class="title">
-                <strong>@T("Footer.MyAccount")</strong>
+                <strong>سایر</strong>
             </div>
             <ul class="list">
-                @if (Model.DisplayCustomerInfoFooterItem)
+                @*@if (Model.DisplayCustomerInfoFooterItem)
                 {
                     <li><a href="@Url.RouteUrl("CustomerInfo")">@T("Account.MyAccount")</a></li>
                 }
-                <li><a href="@Url.RouteUrl("CustomerOrders")">@T("Account.CustomerOrders")</a></li>
+                 <li><a href="@Url.RouteUrl("CustomerOrders")">@T("Account.CustomerOrders")</a></li>
                 @if (Model.DisplayCustomerAddressesFooterItem)
                 {
                     <li><a href="@Url.RouteUrl("CustomerAddresses")">@T("Account.CustomerAddresses")</a></li>
@@ -100,28 +112,18 @@
                 @if (Model.WishlistEnabled && Model.DisplayWishlistFooterItem)
                 {
                     <li><a href="@Url.RouteUrl("Wishlist")">@T("Wishlist")</a></li>
-                }
-                @foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn2).ToList())
+                }*@
+                @if (Model.BlogEnabled && Model.DisplayBlogFooterItem)
                 {
-                    <li><a href="@(Url.RouteUrl<Topic>(new { SeName = topic.SeName }))">@topic.Name</a></li>
-                }
-            </ul>
-        </div>
-        <div class="footer-block">
-            <div class="title">
-                <strong>@T("Footer.CustomerService")</strong>
-            </div>
-            <ul class="list">
-                @if (Model.AllowCustomersToApplyForVendorAccount && Model.DisplayApplyVendorAccountFooterItem)
-                {
-                    <li><a href="@Url.RouteUrl("ApplyVendorAccount")">@T("Vendors.ApplyAccount")</a></li>
+                    <li><a href="@Url.RouteUrl("Blog")">مجله برنجبار</a></li>
                 }
                 @foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn3).ToList())
                 {
                     <li><a href="@(Url.RouteUrl<Topic>(new { SeName = topic.SeName }))">@topic.Name</a></li>
                 }
             </ul>
-        </div>
+        </div> 
+
         <div class="socials-and-payments">
             <div class="social-icons">
                 <div class="title">
@@ -131,12 +133,9 @@
             </div>
             <div class="pay-options">
                 <div class="title">
-                    <strong>@T("SevenSpikes.Themes.Emporium.Common.PaymentOptions")</strong>
-                </div>
-                <img src="@Url.Content("~/Themes/Emporium/Content/img/pay_icon1.png")" alt="" />
-                <img src="@Url.Content("~/Themes/Emporium/Content/img/pay_icon2.png")" alt="" />
-                <img src="@Url.Content("~/Themes/Emporium/Content/img/pay_icon3.png")" alt="" />
-                <img src="@Url.Content("~/Themes/Emporium/Content/img/pay_icon6.png")" alt="" />
+@*                     <strong>@T("SevenSpikes.Themes.Emporium.Common.PaymentOptions")</strong>
+ *@                </div>
+                    <img src="@Url.Content("~/Themes/Emporium/Content/img/enamad.png")" alt="" />
             </div>
         </div>
     </div>
@@ -166,6 +165,7 @@
             </div>
         }
         @await Component.InvokeAsync(typeof(StoreThemeSelectorViewComponent))
+        </div>
     </div>
     @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.Footer, additionalData = Model })
 </div>
